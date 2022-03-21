@@ -6,10 +6,12 @@ Note: For the manuscript "Gene expression noise accelerates the evolution of a b
 The code has been reviewed by Richard P. Feynman Center for Innovation at the Los Alamos National Laboratory, with a C number C21109
 
 This script generates a sample path of the repressilator model.
-The script takes three inputs:
+The script takes five inputs:
 argv[1]: r_0 of the gene circuit
 argv[2]: r_1 of the gene circuit
-argv[3]: a unique ID for specifying the sample path
+argv[3]: end time of the simulation
+argv[4]: duration of the time grid for recording
+argv[5]: a unique ID for specifying the sample path
 
 */
 
@@ -63,7 +65,7 @@ double exponential(double rate);
 int main(int argc, char *argv[])
 {
 
-	srand (time(NULL));
+	srand((unsigned) time(NULL));
 
 	parameter par;
 
@@ -82,12 +84,12 @@ int main(int argc, char *argv[])
 	par.n_species = 3;
 	par.n_reactions = 6;
 
-	par.endT = 30;
-	par.dt = 0.01;
+	par.endT = atoi(argv[3]);
+	par.dt = atof(argv[4]);
 
 	ofstream output;
 	stringstream filename;
-	filename << "./repressilator-"<< (int)atoi(argv[3])<< ".txt";
+	filename << "./evoBuffer/repressilator-"<< (int)atoi(argv[5])<< ".txt";
 	output.open(filename.str().c_str());
 
 	par.n_species = 3;
@@ -123,7 +125,7 @@ int main(int argc, char *argv[])
 
 	for (int i=0;i<par.ens_N;i++)
 	{
-		sta[i].A =0.1*par.Omega;
+		sta[i].A =0;
 		sta[i].B =0;
 		sta[i].C =0;
 		sta[i].t = 0.0;
@@ -162,7 +164,6 @@ int main(int argc, char *argv[])
 
 	output.close();
 
-  return 0;
 
 }
 

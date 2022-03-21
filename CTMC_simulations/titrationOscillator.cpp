@@ -6,13 +6,15 @@ Note: For the manuscript "Gene expression noise accelerates the evolution of a b
 The code has been reviewed by Richard P. Feynman Center for Innovation at the Los Alamos National Laboratory, with a C number C21109
 
 This script generates a sample path of the repressilator model.
-The script takes three inputs:
+The script takes six inputs:
 argv[1]: \beta^F_X of the gene circuit
 argv[2]: \beta^B_X of the gene circuit
-argv[3]: a unique ID for specifying the sample path
+argv[3]: \Omega of the gene circuit
+argv[4]: end time of the simulation
+argv[5]: duration of the time grid for recording
+argv[6]: a unique ID for specifying the sample path
 
 */
-
 
 #include <cstdlib>
 #include <iostream>
@@ -74,7 +76,8 @@ double exponential(double rate);
 int main(int argc, char *argv[])
 {
 
-	srand (time(NULL));
+	srand((unsigned) time(NULL));
+	//system("PAUSE");
 
 	parameter par;
 
@@ -88,8 +91,8 @@ int main(int argc, char *argv[])
 
 	double betaFX=atof(argv[1]);
 	double betaBX=atof(argv[2]);
-	par.endT = 50;
-	par.dt = 0.001;
+	par.endT = atof(argv[4]);
+	par.dt = atof(argv[5]);
 
 	double betaBY=400;
 	double betaFY=10;
@@ -98,10 +101,10 @@ int main(int argc, char *argv[])
 
 	ofstream output;
 	stringstream filename;
-	filename << "./titration-"<< (int)atoi(argv[3])<< ".txt";
+	filename << "./evoBuffer/titrationOscillator-"<< (int)atoi(argv[6])<< ".txt";
 	output.open(filename.str().c_str());
 
-	double Omega = 1000;
+	double Omega = atof(argv[3]);
 
 	par.n_species = 4;
 	par.n_reactions = 9;
@@ -125,6 +128,8 @@ int main(int argc, char *argv[])
 	par.alpha=alpha/Omega;  // rate of forming heterodimers
 	par.gammaA=gammaX;	// Degradation of the transcription factor
 	par.gammaB=gammaY;
+
+
 
 	par.stoi = new double * [par.n_reactions+1];
 
@@ -294,6 +299,7 @@ void evolve_until_T(state *sta, parameter par, double tend)
 		}
 
 	}
+
 
 }
 
