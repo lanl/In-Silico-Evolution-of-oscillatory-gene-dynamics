@@ -11,3 +11,31 @@ The implementation of the evolutionary process is implemented in Python. The pro
 <p align="center">
 <img src='https://github.com/lanl/In-Silico-Evolution-of-oscillatory-gene-dynamics/blob/main/figures/schematics.png' width='60%'>
 </p>
+
+All the evolutionary processes were coded in the Python language and we provided the Jupyter notebooks, located in ```/Evolutionary_Processes```. For those evolutionary processes whose underlying simulator is stochastic, the users need to compile the c++ source code (```/Ccode/repressilator.cpp``` and ```/Ccode/titration-oscilattor.cpp```) to executables (```/Evolutionary_processes/r_evolution.out``` and ```/Evolutionary_processes/t_evolution.out```) in the same folder where the evolutionary codes are. A folder named ```evoBuffer``` for store temporary trajectories needs to be created. 
+
+A set of evolutionary processes include:
+
+#### Repressilator:
+
+```/Evolutionary_processes/repressilator-deterministicEvolution-r0.ipynb```: 1D evolutionary process of the biophysical parameter $r_0$ in the repressilator model with the deterministic gene dynamics; Fig. 3 in the preprint 
+```/Evolutionary_processes/repressilator-deterministicEvolution-r1.ipynb```: 1D evolutionary process of the biophysical parameter $r_1$ in the repressilator with the deterministic gene dynamics; Fig. 3 in the preprint 
+```/Evolutionary_processes/repressilator-stochasticEvolution-r0.ipynb.ipynb```: 1D evolutionary process of the biophysical parameter $r_0$ in the repressilator with the stochastic gene dynamics; Fig. 3 in the preprint 
+```/Evolutionary_processes/repressilator-stochasticEvolution-r1.ipynb.ipynb```: 1D evolutionary process of the biophysical parameter $r_1$ in the repressilator with the stochastic gene dynamics; Fig. 3 in the preprint 
+
+#### Titration oscillator:
+
+```/Evolutionary_processes/titrationOscillator-deterministicEvolution-betaBX.ipynb```: 1D evolutionary process of the biophysical parameter $\beta^B_X$ in the titration model with the deterministic gene dynamics; Fig. 4 in the preprint 
+```/Evolutionary_processes/titrationOscillator-deterministicEvolution-betaFX.ipynb```: 1D evolutionary process of the biophysical parameter $\beta^F_X$ in the titration model with the deterministic gene dynamics; Fig. 4 in the preprint 
+```/Evolutionary_processes/ttitrationOscillator-stochasticEvolution-betaBX.ipynb```: 1D evolutionary process of the biophysical parameter $\beta^B_X$ in the titration model with the stochastic gene dynamics; Fig. 4 in the preprint 
+```/Evolutionary_processes/titrationOscillator-stochasticEvolution-betaFX.ipynb```: 1D evolutionary process of the biophysical parameter $\beta^F_X$ in the titration model with the stochastic gene dynamics; Fig. 4 in the preprint 
+
+```/Evolutionary_processes/titrationOscillator-2D-deterministic-landscape.ipynb```: Grid-based computation of the 2D fitness landscape of the titration model with the deterministic gene dynamics. The output is saved to ```detLandscape.npz``` for the visualization in the 2D evolutionary codes. 
+```/Evolutionary_processes/titrationOscillator-2D-stochastic-landscape.ipynb```: Grid-based computation of the 2D fitness landscape of the titration model with the stochastic gene dynamics. The output is saved to ```stoLandscape.npz``` for the visualization in the 2D evolutionary codes. 
+
+```/Evolutionary_processes/titrationOscillator-deterministicEvolution-betaBX-betaFX.ipynb```: 2D evolutionary process of the biophysical parameters $\beta^B_X$ and $\beta^F_X$ in the titration model with the deterministic gene dynamics; Fig. 5 in the preprint 
+```/Evolutionary_processes/titrationOscillator-stochasticEvolution-betaBX-betaFX.ipynb.ipynb```: 2D evolutionary process of the biophysical parameters $\beta^B_X$ and $\beta^F_X$ in the titration model with the stochastic gene dynamics; Fig. 5 in the preprint 
+
+```/Evolutionary_processes/titrationOscillator-stochasticEvolution-betaBX-betaFX-Omega.ipynb.ipynb```: 3D evolutionary process of the biophysical parameters $\beta^B_X$, $\beta^F_X$, and $\Omega$ in the titration model; Fig. 6 in the preprint 
+
+
